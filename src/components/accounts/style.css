@@ -1,0 +1,45 @@
+label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: 100 !important;
+  }
+  .pagination-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+  }
+  
+  .pagination-top .row {
+    display: flex;
+    align-items: center;
+  }
+  
+  .pagination-top select {
+    padding: 6px 12px;
+    background-color: #f2f2f2;
+    border: none;
+    color: #000;
+    font-size: 14px;
+    font-weight: bold;
+    margin-right: 10px;
+  }
+  
+  .pagination-top input[type="text"] {
+    padding: 6px 12px;
+    background-color: #f2f2f2;
+    border: none;
+    color: #000;
+    font-size: 14px;
+  }
+  .pagination-bottom{
+    display: flex;
+justify-content: flex-end;
+margin-bottom: 8px;
+  }
+  .datatable-con{
+    background-color: #ffffff;
+    padding: 10px;
+  }
+.card-header{
+    background-color: #0f5594;
+    color: #f2f2f2;
+}
