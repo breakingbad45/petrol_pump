@@ -15,6 +15,7 @@ function App() {
   const Transaction = lazy(() => import("./pages/Transaction"));
   const DualTransaction = lazy(() => import("./pages/DualTransaction"));
   const Inventory = lazy(() => import("./pages/Inventory"));
+  const Inventory2 = lazy(() => import("./pages/Inventory2"));
   const TransactionReport = lazy(() => import("./pages/TransactionReport"));
   const SalesReport = lazy(() => import("./pages/SalesReport"));
   const CreditReport = lazy(() => import("./pages/CreditReport"));
@@ -260,6 +261,14 @@ function App() {
               element={
                 <Layout>
                   <Inventory />
+                </Layout>
+              }
+            />
+             <Route
+              path="/inventory2"
+              element={
+                <Layout>
+                  <Inventory2 />
                 </Layout>
               }
             />

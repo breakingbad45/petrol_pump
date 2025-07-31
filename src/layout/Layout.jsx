@@ -175,6 +175,15 @@ const banglaDate = `${day} ${month} ${year}`;
     </span>
     </Link>
 </li>
+
+<li  className={location.pathname==="/inventory2"?"active":""}>
+            <Link to="/inventory2">
+    <i className="fa fa-shopping-cart" /> <span>Inventory 2 </span>
+    <span className="pull-right-container">
+      
+    </span>
+    </Link>
+</li>
 <li  className={location.pathname==="/reportmenu"?"active":""}>
             <Link to="/reportmenu">
     <i className="fa fa-id-card" /> <span> Report & Ledger   </span>

@@ -168,6 +168,7 @@ export default function SalesReport() {
                   <th style={{ border: '1px solid #79a4ca' }} scope="col">দর </th>
                   <th style={{ border: '1px solid #79a4ca' }} scope="col">মোট </th>
                   <th style={{ border: '1px solid #79a4ca' }} scope="col">বিবরণ</th>
+                  <th style={{ border: '1px solid #79a4ca' }} scope="col">লাইসেন্স</th>
                 </tr>
               </thead>
               <tbody>
@@ -175,6 +176,7 @@ export default function SalesReport() {
                   <tr key={index}>
                     <th style={{border: '1px solid #79a4ca'}} scope="row">{index + 1}</th>
                     <td style={{border: '1px solid #79a4ca'}} >{item.inv_id}</td>
+
                     <td style={{border: '1px solid #79a4ca'}}>{item.e_date}</td>
                     <td style={{border: '1px solid #79a4ca',fontWeight:'bold'}}>{item.account_name}</td>
                     <td style={{border: '1px solid #79a4ca',textAlign:'center'}}>{item.product_name}</td>
@@ -182,6 +184,8 @@ export default function SalesReport() {
                     <td style={{border: '1px solid #79a4ca',textAlign:'right'}}>{item.s_rate==='0'?'.00':item.s_rate}</td>
                     <td style={{border: '1px solid #79a4ca',textAlign:'right'}}>{numberWithCommas(item.total_tk)}</td>
                     <td style={{border: '1px solid #79a4ca'}}>{item.remarks}</td>
+                    <td style={{border: '1px solid #79a4ca'}}>{item.license_no}</td>
+
                   </tr>
                 ))}
               </tbody>
@@ -190,6 +194,7 @@ export default function SalesReport() {
                   <td colSpan="7" style={{color:'red',fontWeight:'bold'}}><b>Total:</b></td>
                 
                   <td style={{textAlign:'right',fontWeight:'bold'}}>{numberWithCommas(totalReceive)}</td>
+                  <td style={{textAlign:'right',fontWeight:'bold'}}></td>
                 </tr>
               </tfoot>
             </table>

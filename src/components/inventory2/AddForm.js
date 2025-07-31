@@ -71,7 +71,7 @@ const AddForm = () => {
   const [inputsForm, setInputsForm] = useState({
     e_date: serverDate,
     sell_type: 'SELL',
-    bill_type: 'CASH',
+    bill_type: 'CASHY',
     product_id: '',
     product_name: 'Select..',
     ac_id: 'Select..',
@@ -140,8 +140,8 @@ const getUserData = (event) => {
       // Use 'name' to update the corresponding field dynamically
     }));
   
-    if (name === "sell_type" && inputsForm.bill_type === "CASH") {
-      // If the field being updated is 'sell_type' and bill type is 'CASH',
+    if (name === "sell_type" && inputsForm.bill_type === "CASHN") {
+      // If the field being updated is 'sell_type' and bill type is 'CASHN',
       // move focus to the next input
       inputRefs[3]?.current.focus();
       // inputRefs[3]?.current.select()
@@ -311,7 +311,7 @@ return () => {
     setInputsForm({
       e_date: new Date().toISOString().slice(0, 10),
       sell_type: 'SELL',
-      bill_type: 'CASH',
+      bill_type: 'CASHN',
       product_id: '',
       product_name: 'Select..',
       ac_id: 'Select..',
@@ -662,11 +662,11 @@ useEffect(() => {
        sl={0}
         type="radio"
         className="flat-red"
-        checked={inputsForm.bill_type === "CASH"}
-        onChange={() => handleBillTypeChange("CASH")}
+        checked={inputsForm.bill_type === "CASHN"}
+        onChange={() => handleBillTypeChange("CASHN")}
         onKeyDown={(event) => handleKeyPress(event, 0)}
       />{" "}
-      CASH
+      CASHN
     </label>
     <label>
       <input

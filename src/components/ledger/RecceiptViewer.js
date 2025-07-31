@@ -14,7 +14,7 @@ const currentDate = utcPlus6Date.toISOString().slice(0, 10); // YYYY-MM-DD
 
 const fuser = localStorage.getItem('user');
 const user =JSON.parse(fuser)
-const date = user?.mode === "0" ? user.date : currentDate;
+const date = user?.mode === "0" ? user?.date : currentDate;
 
 const ReceiptViewer = ({ data}) => {
 
@@ -34,8 +34,6 @@ const ReceiptViewer = ({ data}) => {
     email:'ssssssssssssssss',
 };
 const [invoicedata, setinvoicedata] = useState([]);
-console.log(invoicedata);
-
 const [due, setdue] = useState();
 
   useEffect(() => {
@@ -43,10 +41,11 @@ const [due, setdue] = useState();
 
     
     const response = await axiosInstance.get(`/transactions/getReceipt.php?id=${data}`);
-   const response2 = await axiosInstance.get(`/commondata/fetchSelectedAc.php?id=${response.data[0].clientid}`);
-           
-            
-            setdue(numberWithCommas(Number(response2?.data[0]?.balance).toFixed(2)))
+   const response2 = await axiosInstance.get(`/commondata/fetchSelectedAc.php?id=${response?.data[0]?.ac_id}`);
+         console.log(response.data);
+         
+          
+          setdue(numberWithCommas(Number(response2?.data[0]?.balance).toFixed(2)))
   setinvoicedata(response.data)
 
 

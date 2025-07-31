@@ -2,6 +2,19 @@ import React, { useState } from 'react';
 import numberWithCommas from '../utils/numberWithCommas';
 
 const InventorySummary = () => {
+  const products = [
+    { id: '4873', name: 'Octan' },
+    { id: '4871', name: 'Petrol' },
+    { id: '4872', name: 'Diesel' },
+    { id: '4874', name: 'LPG' },
+  ];
+
+  const accounts = [
+    { id: '11065', name: 'Octan Expense' },
+    { id: '11064', name: 'Petrol Expense' },
+    { id: '11063', name: 'Diesel Expense' },
+  ];
+
   const [productId, setProductId] = useState('');
   const [acId, setAcId] = useState('');
   const [month, setMonth] = useState(new Date().getMonth() + 1);
@@ -14,7 +27,7 @@ const InventorySummary = () => {
 
   const fetchSummary = async () => {
     if (!productId || !acId) {
-      alert('Please enter both Product ID and Account ID');
+      alert('Please select both Product and Account');
       return;
     }
 
@@ -36,13 +49,12 @@ const InventorySummary = () => {
     typeof n === 'number' && !isNaN(n) ? n.toFixed(3) : '0.000';
 
   const runningStock = data ? data.previous_stock + data.purchase_qty - data.sell_qty : 0;
-  const avgSellPrice = data && data.sell_qty > 0 ? data.sell_amount / data.sell_qty : 0;
-const somaponistokavg =  (data?.previous_stock * data?.prev_avg +
-                    data?.purchase_amount +
-                    parseFloat(data?.total_expense_this_month))/(data?.previous_stock + data?.purchase_qty)
+  const somaponistokavg = data
+    ? (data.previous_stock * data.prev_avg + data.purchase_amount + parseFloat(data.total_expense_this_month)) /
+      (data.previous_stock + data.purchase_qty)
+    : 0;
   const runningStockAmount = runningStock * somaponistokavg;
-              
-       
+
   const inputStyle = {
     padding: '8px',
     width: '100%',
@@ -93,18 +105,54 @@ const somaponistokavg =  (data?.previous_stock * data?.prev_avg +
 
       {/* Input Section */}
       <div style={sectionStyle}>
-        <label style={labelStyle}>Product ID</label>
-        <input type="text" style={inputStyle} value={productId} onChange={(e) => setProductId(e.target.value)} />
-        <label style={labelStyle}>Account ID</label>
-        <input type="text" style={inputStyle} value={acId} onChange={(e) => setAcId(e.target.value)} />
+        <label style={labelStyle}>Product</label>
+        <select
+          style={inputStyle}
+          value={productId}
+          onChange={(e) => setProductId(e.target.value)}
+        >
+          <option value="">-- Select Product --</option>
+          {products.map((prod) => (
+            <option key={prod.id} value={prod.id}>
+              {prod.name}
+            </option>
+          ))}
+        </select>
+
+        <label style={labelStyle}>Account</label>
+        <select
+          style={inputStyle}
+          value={acId}
+          onChange={(e) => setAcId(e.target.value)}
+        >
+          <option value="">-- Select Account --</option>
+          {accounts.map((acc) => (
+            <option key={acc.id} value={acc.id}>
+              {acc.name}
+            </option>
+          ))}
+        </select>
+
         <div style={{ display: 'flex', gap: '10px' }}>
           <div style={{ flex: 1 }}>
             <label style={labelStyle}>Month</label>
-            <input type="number" style={inputStyle} value={month} min="1" max="12" onChange={(e) => setMonth(e.target.value)} />
+            <input
+              type="number"
+              style={inputStyle}
+              value={month}
+              min="1"
+              max="12"
+              onChange={(e) => setMonth(e.target.value)}
+            />
           </div>
           <div style={{ flex: 1 }}>
             <label style={labelStyle}>Year</label>
-            <input type="number" style={inputStyle} value={year} onChange={(e) => setYear(e.target.value)} />
+            <input
+              type="number"
+              style={inputStyle}
+              value={year}
+              onChange={(e) => setYear(e.target.value)}
+            />
           </div>
         </div>
       </div>
@@ -142,7 +190,7 @@ const somaponistokavg =  (data?.previous_stock * data?.prev_avg +
               {data.expense_list?.map((item, idx) => (
                 <tr key={idx}>
                   <td style={tdStyle}>{toBn(item.e_date)}</td>
-                  <td style={tdStyle}>{toBn(item.remarks)}</td>
+                  <td style={tdStyle}>{item.remarks}</td>
                   <td style={tdStyleRight}>{toBn(numberWithCommas(formatNum(parseFloat(item.payment))))}</td>
                 </tr>
               ))}
