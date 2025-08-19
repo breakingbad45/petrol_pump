@@ -331,12 +331,14 @@ const selectac = [{
     const columns = ["ID",  "Date","Remarks","Product", "Qty", "Rate", "Payment","Receive", "Balance"];
     const totalPayment = ledgerData.reduce((sum, item) => sum + (parseInt(item.payment) || 0), 0);
     const totalReceive = ledgerData.reduce((sum, item) => sum + (parseInt(item.receive) || 0), 0);
+    console.log(ledgerData);
+    
     const rows = ledgerData.map((item) => [
       { content: item.id, styles: { halign: "left" } },
       { content: item.e_date, styles: { halign: "left" } },
       { content: item.remarks, styles: { halign: "left" } },
       { content: item.name, styles: { halign: "left" } },
-      { content: item.unit_2 === '0' ? "-" : item.unit_2, styles: { halign: "right" } },
+      { content: item.unit_2 === '0' ||  item.unit_2 === null ? "-" : item.unit_2, styles: { halign: "right" } },
 
       { content: item.s_rate === '0' ? "-" : numberWithCommas(item.s_rate), styles: { halign: "right" } },
 
@@ -347,29 +349,36 @@ const selectac = [{
       { content: numberWithCommas(item.balance), styles: { halign: "right", textColor: item.balance < 0 ? [255, 0, 0] : [0, 0, 0] } },
     ]);
     rows.push([
-      { content: "Total", colSpan: 7, styles: { halign: "right", fontStyle: "bold" } },
+      { content: "Total", colSpan: 6, styles: { halign: "right", fontStyle: "bold" } },
       { content: numberWithCommas(totalPayment.toFixed(2)), styles: { halign: "right", fontStyle: "bold" } },
       { content: numberWithCommas(totalReceive.toFixed(2)), styles: { halign: "right", fontStyle: "bold" } },
       { content: "", styles: { halign: "right" } },
     ]);
-    autoTable(doc, {
-      head: [columns],
-      body: rows,
-      startY: finalY,
-      theme: "striped",
-      styles: { fontSize: 10 },
-      headStyles: { fillColor: [41, 128, 185], textColor: 255 },
-      margin: { top: 20 },
-      didDrawPage: (data) => {
-        // Footer on every page
-        doc.setFontSize(9);
-        doc.setFont("helvetica", "italic");
-        const timestamp = `Generated on: ${new Date().toLocaleString()}`;
-        doc.text(timestamp, 15, 200);
-        doc.text(`Page ${pageCount}`, 260, 200);
-        pageCount++;
-      },
-    });
+  autoTable(doc, {
+  head: [columns],
+  body: rows,
+  startY: finalY,
+  theme: "grid",
+  styles: { fontSize: 10 },
+  headStyles: { fillColor: [41, 128, 185], textColor: 255 },
+  margin: { top: 20 },
+  columnStyles: {
+    4: { halign: "right" }, // Qty
+    5: { halign: "right" }, // Rate
+    6: { halign: "right" }, // Payment
+    7: { halign: "right" }, // Receive
+    8: { halign: "right" }, // Balance
+  },
+  didDrawPage: (data) => {
+    doc.setFontSize(9);
+    doc.setFont("helvetica", "italic");
+    const timestamp = `Generated on: ${new Date().toLocaleString()}`;
+    doc.text(timestamp, 15, 200);
+    doc.text(`Page ${pageCount}`, 260, 200);
+    pageCount++;
+  },
+});
+
 
     window.open(doc.output("bloburl"), "_blank");
   };
