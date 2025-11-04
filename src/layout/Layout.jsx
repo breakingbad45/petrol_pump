@@ -135,6 +135,15 @@ const banglaDate = `${day} ${month} ${year}`;
     </span>
     </Link>
 </li>
+
+<li  className={location.pathname==="/salaryform"?"active":""}>
+            <Link to="/salaryform">
+    <i className="fa fa-money" /> <span> Salaryform   </span>
+    <span className="pull-right-container">
+      
+    </span>
+    </Link>
+</li>
 <li  className={location.pathname==="/reading"?"active":""}>
             <Link to="/reading">
     <i className="fa fa-money" /> <span> Reading   </span>

@@ -37,6 +37,7 @@ function App() {
   const Universalform = lazy(() => import("./pages/Universalform"));
   const Machinereading = lazy(() => import("./pages/Machinereading"));
   const Temporary = lazy(() => import("./pages/Temporary"));
+  const EmployeeSalaryForm = lazy(() => import("./pages/EmployeeSalary"));
 
   return (
     <Suspense fallback={<Loader />}>
@@ -56,6 +57,15 @@ function App() {
               element={
                 <Layout>
                   <Dashboard />
+                </Layout>
+              }
+            />
+
+              <Route
+              path="/salaryform"
+              element={
+                <Layout>
+                  < EmployeeSalaryForm/>
                 </Layout>
               }
             />

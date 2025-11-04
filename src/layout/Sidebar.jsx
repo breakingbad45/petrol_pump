@@ -45,6 +45,14 @@ const Sidebar = () => {
     </Link>
 </li>
 
+<li  className={location.pathname==="/salaryform"?"active":""}>
+            <Link to="/salaryform">
+    <i className="fa fa-th" /> <span> Salary Form   </span>
+    <span className="pull-right-container">
+      <small className="label pull-right bg-green">new</small>
+    </span>
+    </Link>
+</li>
 
 <li  className={location.pathname==="/dualtransaction"?"active":""}>
             <Link to="/dualtransaction">

@@ -260,6 +260,8 @@ const divStyles = {
          <img src="/assets/img/icons/product.svg" alt="img" /><span> Transaction</span> 
 </Link>
                  </li>
+
+                 
                  {/* <li className={location.pathname==="/delivery" || extracted==="/deliverychalan"?"active":""}>
                 <Link to="/delivery" >
                 <img src="/assets/img/icons/eye.svg" alt="img" /><span> Delivery</span> 

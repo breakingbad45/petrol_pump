@@ -42,8 +42,7 @@ const [due, setdue] = useState();
     
     const response = await axiosInstance.get(`/transactions/getReceipt.php?id=${data}`);
    const response2 = await axiosInstance.get(`/commondata/fetchSelectedAc.php?id=${response?.data[0]?.ac_id}`);
-         console.log(response.data);
-         
+
           
           setdue(numberWithCommas(Number(response2?.data[0]?.balance).toFixed(2)))
   setinvoicedata(response.data)
